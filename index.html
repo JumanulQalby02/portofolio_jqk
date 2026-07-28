@@ -162,10 +162,17 @@
   .photo-frame{
     position:relative; width:100%; max-width:360px;
   }
-  .photo-frame img, .photo-frame .photo-placeholder{
+  .photo-frame .photo-placeholder{
     width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--ink-3);
-    border:none;
-    box-shadow:0 0 0 1px rgba(237,234,217,0.08), 0 30px 60px -20px rgba(0,0,0,0.5);
+  }
+  .photo-frame img{
+    width:100%; aspect-ratio:4/5; object-fit:cover;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%),
+                         linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%),
+                linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-composite: intersect;
   }
   .photo-placeholder{
     display:flex; align-items:center; justify-content:center;
