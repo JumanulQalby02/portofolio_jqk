@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jumanul Qalby Khutami — Financial Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F7FA;
+    --paper-2:#E7ECF3;
+    --paper-line: rgba(13,28,54,0.12);
+    --ink:#0E1E38;
+    --ink-soft:#4E5E7A;
+    --ink-2:#0A1830;
+    --ink-3:#132A4C;
+    --ledger:#1E4E8C;
+    --ledger-soft:#5488CC;
+    --flag:#B07C2C;
+    --flag-soft:#C99A4C;
+    --docblue:#2E7D74;
+    --cream-text:#EAF0F8;
+    --cream-text-soft:#9FB2CC;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Open Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--ledger); color:var(--cream-text); }
+
+  h1,h2,h3,h4{
+    font-family:'Open Sans', sans-serif;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{ margin:0; line-height:1.7; }
+  a{ color:inherit; text-decoration:none; }
+  img{max-width:100%; display:block;}
+  button{ font:inherit; }
+
+  :focus-visible{ outline:2px solid var(--ledger); outline-offset:3px; }
+
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  section{ scroll-margin-top:118px; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+
+  /* ===== TICKER ===== */
+  .ticker{
+    background:var(--ink-2);
+    color:var(--cream-text-soft);
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid rgba(237,234,217,0.1);
+  }
+  .ticker-track{ display:inline-flex; animation:ticker 38s linear infinite; padding:7px 0; }
+  .ticker-track span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.06em;
+    padding:0 20px;
+    display:inline-flex; align-items:center; gap:20px;
+  }
+  .ticker-track span::after{ content:"·"; color:var(--ledger-soft); margin-left:20px; }
+  @keyframes ticker{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+  /* ===== HEADER + TABS (signature nav) ===== */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink-2);
+  }
+  .nav-top{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1120px; margin:0 auto; padding:14px 32px 0;
+  }
+  .brand{
+    font-family:'Open Sans', sans-serif; font-weight:700; font-size:1rem;
+    color:var(--cream-text); display:flex; align-items:center; gap:10px;
+  }
+  .brand .mark{
+    width:28px; height:28px; border:1px solid var(--ledger-soft); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size:0.6rem; color:var(--ledger-soft);
+  }
+  .nav-cta{
+    font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.05em;
+    color:var(--ink-2); background:var(--cream-text); padding:8px 15px;
+    border:1px solid var(--cream-text);
+  }
+  .nav-cta:hover{ background:transparent; color:var(--cream-text); }
+
+  .tabs{
+    max-width:1120px; margin:12px auto 0; padding:0 32px;
+    display:flex; gap:2px; overflow-x:auto; scrollbar-width:none;
+  }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.03em;
+    white-space:nowrap; padding:10px 18px 9px;
+    background:rgba(237,234,217,0.06);
+    color:var(--cream-text-soft);
+    border-top-left-radius:4px; border-top-right-radius:4px;
+    border:1px solid rgba(237,234,217,0.08);
+    border-bottom:none;
+    transition:background .2s ease, color .2s ease;
+  }
+  .tab:hover{ color:var(--cream-text); }
+  .tab.active{
+    background:var(--paper); color:var(--ink);
+    border-color:var(--paper);
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    background:linear-gradient(180deg, var(--ink-2) 0%, var(--ink-3) 100%);
+    color:var(--cream-text);
+    padding:56px 0 70px;
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:56px; align-items:center; }
+  .hero .eyebrow{ color:var(--ledger-soft); margin-bottom:16px; display:block; }
+  .hero h1{ font-size:clamp(2rem, 4vw, 2.9rem); line-height:1.14; color:var(--cream-text); }
+  .hero-role{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    color:var(--cream-text-soft); font-size:1.05rem; margin-top:10px;
+  }
+  .hero-sub{ margin-top:20px; max-width:54ch; color:var(--cream-text-soft); font-size:0.98rem; }
+  .hero-cta{ margin-top:30px; display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.04em;
+    padding:12px 20px; border:1px solid var(--ledger-soft);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:all .2s ease; cursor:pointer; background:none;
+  }
+  .btn-solid{ background:var(--ledger-soft); color:var(--ink-2); border-color:var(--ledger-soft); }
+  .btn-solid:hover{ background:transparent; color:var(--ledger-soft); }
+  .btn-outline{ color:var(--cream-text); border-color:rgba(237,234,217,0.35); }
+  .btn-outline:hover{ border-color:var(--cream-text); }
+
+  /* cell/data table replacing generic stat row */
+  .cell-table{ margin-top:44px; display:grid; grid-template-columns:repeat(4,1fr); border:1px solid rgba(237,234,217,0.18); }
+  .cell{ padding:14px 16px; border-right:1px solid rgba(237,234,217,0.18); position:relative; }
+  .cell:last-child{ border-right:none; }
+  .cell .ref{ font-family:'IBM Plex Mono', monospace; font-size:0.58rem; color:var(--ink-3); background:var(--ledger-soft); display:inline-block; padding:1px 5px; position:absolute; top:0; left:0; transform:translateY(-100%); letter-spacing:0.04em; }
+  .cell .num{ font-family:'IBM Plex Mono', monospace; font-size:1.28rem; color:var(--cream-text); display:block; }
+  .cell .lbl{ font-size:0.68rem; color:var(--cream-text-soft); margin-top:4px; display:block; }
+
+  /* photo, clipped-to-a-workpaper */
+  .photo-wrap{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .photo-frame{
+    position:relative; width:230px; background:var(--paper);
+    padding:14px 14px 46px; box-shadow:0 20px 40px -16px rgba(0,0,0,0.5);
+    transform:rotate(-2deg);
+  }
+  .photo-frame img, .photo-frame .photo-placeholder{
+    width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--ink-3);
+  }
+  .photo-placeholder{
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:2.6rem; color:var(--ledger-soft);
+    border:1px dashed rgba(237,234,217,0.3);
+  }
+  .photo-frame .cap{
+    position:absolute; bottom:14px; left:14px; right:14px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.62rem; color:var(--ink-soft);
+    text-align:center; letter-spacing:0.02em;
+  }
+  .clip{ position:absolute; top:-13px; left:50%; transform:translateX(-50%); width:52px; height:22px; }
+  .clip .bar{ position:absolute; top:9px; left:2px; right:2px; height:6px; background:#8b9088; border-radius:2px; }
+  .clip .ear{ position:absolute; top:0; width:16px; height:16px; border:3px solid #8b9088; border-radius:50%; background:transparent; }
+  .clip .ear.l{ left:4px; } .clip .ear.r{ right:4px; }
+  .photo-badge{
+    font-family:'IBM Plex Mono', monospace; font-size:0.65rem; letter-spacing:0.06em;
+    color:var(--ledger-soft); border:1px solid var(--ledger-soft); padding:4px 10px;
+  }
+
+  /* ===== SECTION HEADS ===== */
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; flex-wrap:wrap; }
+  .section-head .eyebrow{ color:var(--ledger); margin-bottom:9px; display:block; }
+  .section-head h2{ font-size:clamp(1.5rem, 2.6vw, 2.05rem); }
+  .section-head .desc{ max-width:40ch; color:var(--ink-soft); font-size:0.9rem; }
+  .on-dark .section-head .eyebrow{ color:var(--ledger-soft); }
+  .on-dark .section-head .desc{ color:var(--cream-text-soft); }
+
+  /* ===== ABOUT ===== */
+  .about{ padding:88px 0; }
+  .about-grid{ display:grid; grid-template-columns:0.85fr 1.4fr; gap:52px; }
+  .about-card{ background:var(--ink-2); color:var(--cream-text); padding:30px; position:sticky; top:150px; align-self:start; }
+  .about-card .mono-label{ color:var(--ledger-soft); font-size:0.66rem; }
+  .about-card h3{ font-size:1.22rem; margin-top:9px; color:var(--cream-text); }
+  .about-card ul{ list-style:none; padding:0; margin:20px 0 0; display:flex; flex-direction:column; gap:11px; }
+  .about-card li{ font-size:0.83rem; color:var(--cream-text-soft); padding-left:15px; position:relative; }
+  .about-card li::before{ content:""; position:absolute; left:0; top:8px; width:5px; height:5px; background:var(--ledger-soft); }
+  .about-card .wp-meta{ margin-top:22px; padding-top:16px; border-top:1px solid rgba(237,234,217,0.14); font-family:'IBM Plex Mono', monospace; font-size:0.62rem; color:var(--cream-text-soft); letter-spacing:0.02em; }
+  .about-body p{ color:var(--ink-soft); font-size:1rem; margin-bottom:20px; }
+  .about-body p:last-child{ margin-bottom:0; }
+  .about-body strong{ color:var(--ink); font-weight:600; }
+
+  /* ===== TIMELINE ===== */
+  .track{ background:var(--paper-2); padding:88px 0; }
+  .timeline{ position:relative; padding-left:52px; margin-top:16px; }
+  .rail{ position:absolute; left:13px; top:6px; bottom:6px; width:2px; background:var(--paper-line); }
+  .rail-fill{ position:absolute; left:0; top:0; width:100%; height:0%; background:var(--ledger); transition:height .12s linear; }
+  .tl-item{ position:relative; padding-bottom:46px; opacity:0.4; transform:translateY(6px); transition:opacity .5s ease, transform .5s ease; }
+  .tl-item.in-view{ opacity:1; transform:translateY(0); }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-node{ position:absolute; left:-52px; top:2px; width:28px; height:28px; border:1.5px solid var(--ink-soft); border-radius:50%; background:var(--paper-2); display:flex; align-items:center; justify-content:center; transition:all .4s ease; }
+  .tl-item.in-view .tl-node{ border-color:var(--ledger); background:var(--ledger); }
+  .tl-node::after{ content:""; width:6px; height:6px; border-radius:50%; background:var(--ink-soft); transition:background .4s ease; }
+  .tl-item.in-view .tl-node::after{ background:var(--paper-2); }
+  .tl-date{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--ledger); margin-bottom:6px; display:block; }
+  .tl-item h3{ font-size:1.1rem; margin-bottom:7px; }
+  .tl-item p{ color:var(--ink-soft); font-size:0.9rem; max-width:62ch; }
+  .tl-tag{ display:inline-block; margin-top:11px; font-family:'IBM Plex Mono', monospace; font-size:0.65rem; letter-spacing:0.05em; color:var(--flag); }
+
+  /* ===== ACHIEVEMENTS (static ledger entries, no flip gimmick) ===== */
+  .achievements{ padding:88px 0; }
+  .ledger-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--paper-line); border:1px solid var(--paper-line); }
+  .ledger-item{ background:var(--paper); padding:24px 26px; display:flex; gap:16px; }
+  .ledger-check{ flex:none; width:26px; height:26px; border-radius:50%; border:1.5px solid var(--ledger); color:var(--ledger); display:flex; align-items:center; justify-content:center; font-size:0.8rem; margin-top:2px; }
+  .ledger-body h4{ font-size:1rem; line-height:1.35; }
+  .ledger-body .yr{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; color:var(--ink-soft); margin-top:5px; display:block; }
+  .ledger-body p{ font-size:0.85rem; color:var(--ink-soft); margin-top:9px; }
+
+  /* ===== KARYA / WORK (replaces Proyek) ===== */
+  .work{ background:var(--ink-2); padding:88px 0; color:var(--cream-text); }
+  .work-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:rgba(237,234,217,0.12); border:1px solid rgba(237,234,217,0.12); }
+  .work-card{ background:var(--ink-2); padding:26px; display:flex; flex-direction:column; gap:13px; transition:background .2s ease; }
+  .work-card:hover{ background:var(--ink-3); }
+  .work-top{ display:flex; align-items:center; gap:12px; }
+  .file-badge{ flex:none; width:40px; height:40px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; font-weight:600; color:var(--ink-2); letter-spacing:0.02em; }
+  .file-badge.xlsx{ background:var(--ledger-soft); }
+  .file-badge.pdf{ background:var(--flag-soft); }
+  .file-badge.docx{ background:var(--docblue); }
+  .work-card h4{ font-size:1rem; color:var(--cream-text); line-height:1.3; }
+  .work-tag{ font-family:'IBM Plex Mono', monospace; font-size:0.64rem; color:var(--cream-text-soft); }
+  .work-card p{ color:var(--cream-text-soft); font-size:0.86rem; }
+  .work-open{ margin-top:auto; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--ledger-soft); display:inline-flex; align-items:center; gap:6px; }
+  .work-open:hover{ color:var(--cream-text); }
+  .work-note{ margin-top:36px; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--cream-text-soft); border-top:1px solid rgba(237,234,217,0.14); padding-top:16px; }
+
+  /* ===== SKILLS ===== */
+  .skills{ padding:88px 0; }
+  .skills-grid{ display:grid; grid-template-columns:1fr 1fr; gap:52px; }
+  .skill-block h3{ font-size:1.05rem; margin-bottom:20px; }
+  .hard-list{ display:flex; flex-direction:column; }
+  .hard-row{ display:flex; align-items:center; justify-content:space-between; padding:11px 12px; border-bottom:1px solid var(--paper-line); }
+  .hard-row:nth-child(odd){ background:var(--paper-2); }
+  .hard-row .name{ font-size:0.9rem; }
+  .hard-row .level{ font-family:'IBM Plex Mono', monospace; font-size:0.62rem; color:var(--ledger); }
+  .soft-tags{ display:flex; flex-wrap:wrap; gap:9px; }
+  .soft-tags span{ font-size:0.8rem; padding:7px 13px; background:var(--paper-2); color:var(--ink-soft); border:1px solid var(--paper-line); }
+
+  /* ===== CONTACT ===== */
+  .contact{ background:var(--ink-2); color:var(--cream-text); padding:96px 0 60px; text-align:center; }
+  .contact .eyebrow{ color:var(--ledger-soft); }
+  .contact h2{ font-size:clamp(1.6rem,3.4vw,2.3rem); margin-top:14px; max-width:24ch; margin-left:auto; margin-right:auto; }
+  .contact p.lead{ color:var(--cream-text-soft); max-width:52ch; margin:18px auto 0; font-size:0.95rem; }
+  .contact-links{ margin-top:34px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+  .contact-meta{ margin-top:40px; padding-top:22px; border-top:1px solid rgba(237,234,217,0.14); font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--cream-text-soft); }
+  footer{ background:var(--ink-2); color:var(--cream-text-soft); text-align:center; padding:20px; font-family:'IBM Plex Mono', monospace; font-size:0.65rem; border-top:1px solid rgba(237,234,217,0.08); }
+
+  @media (max-width: 860px){
+    .wrap{ padding:0 20px; }
+    .nav-top{ padding:14px 20px 0; }
+    .tabs{ padding:0 20px; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .photo-wrap{ order:-1; }
+    .photo-frame{ width:190px; }
+    .cell-table{ grid-template-columns:repeat(2,1fr); }
+    .cell:nth-child(2n){ border-right:none; }
+    .about-grid{ grid-template-columns:1fr; }
+    .about-card{ position:static; }
+    .ledger-grid{ grid-template-columns:1fr; }
+    .work-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr; gap:34px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation:none; }
+    html{ scroll-behavior:auto; }
+    .tl-item{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <header class="nav">
+    <div class="nav-top">
+      <a href="#beranda" class="brand"><span class="mark">JQK</span> Jumanul Qalby Khutami</a>
+      <a href="#kontak" class="nav-cta">HUBUNGI SAYA</a>
+    </div>
+    <nav class="tabs" id="tabs">
+      <a href="#beranda" class="tab" data-target="beranda">Beranda</a>
+      <a href="#tentang" class="tab" data-target="tentang">Tentang</a>
+      <a href="#perjalanan" class="tab" data-target="perjalanan">Perjalanan</a>
+      <a href="#pencapaian" class="tab" data-target="pencapaian">Pencapaian</a>
+      <a href="#karya" class="tab" data-target="karya">Karya</a>
+      <a href="#keahlian" class="tab" data-target="keahlian">Keahlian</a>
+      <a href="#kontak" class="tab" data-target="kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="beranda">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">FINANCIAL ANALYST — FRESH GRADUATE</span>
+        <h1>Jumanul Qalby Khutami</h1>
+        <p class="hero-role">Riset Ekuitas · Financial Modelling · Analisis Kebijakan</p>
+        <p class="hero-sub">Lulusan Administrasi Bisnis Universitas Padjadjaran (IPK 3.85/4.00) dengan pengalaman menyusun model valuasi, riset ekuitas kompetitif, dan SOP audit internal. Halaman ini merangkum apa yang sudah saya kerjakan — lengkap dengan dokumennya.</p>
+        <div class="hero-cta">
+          <a href="#karya" class="btn btn-solid">LIHAT KARYA SAYA ↓</a>
+          <a href="#kontak" class="btn btn-outline">HUBUNGI SAYA</a>
+        </div>
+        <div class="cell-table">
+          <div class="cell"><span class="ref">A1</span><span class="num">3.85</span><span class="lbl">IPK Kelulusan / 4.00</span></div>
+          <div class="cell"><span class="ref">B1</span><span class="num">4×</span><span class="lbl">Kompetisi Riset Ekuitas</span></div>
+          <div class="cell"><span class="ref">C1</span><span class="num">2</span><span class="lbl">Juara 1 Tingkat Nasional</span></div>
+          <div class="cell"><span class="ref">D1</span><span class="num">12+</span><span class="lbl">SOP Diaudit &amp; Diperbarui</span></div>
+        </div>
+      </div>
+      <div class="photo-wrap">
+        <div class="photo-frame">
+          <div class="clip"><span class="ear l"></span><span class="ear r"></span><span class="bar"></span></div>
+
+          <!-- ================================================================
+               GANTI FOTO DI SINI
+               Ganti <div class="photo-placeholder">JQK</div> di bawah ini dengan:
+               <img src="foto-kamu.jpg" alt="Foto Jumanul Qalby Khutami">
+               Kirim fotonya ke chat ini kalau mau langsung dipasangkan.
+               ================================================================ -->
+          <div class="photo-placeholder">JQK</div>
+
+          <span class="cap">JUMANUL QALBY KHUTAMI · BANDUNG, ID</span>
+        </div>
+        <span class="photo-badge">TOP GRADUATE 2025/2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="tentang">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">WP 1.0 — TENTANG SAYA</span><h2>Dari Rantai Pasok ke Pasar Modal</h2></div>
+        <p class="desc">Tiga pengalaman yang membentuk cara saya membaca data, risiko, dan keputusan.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <span class="mono-label eyebrow">RINGKASAN PROFIL</span>
+          <h3>Menuju Financial Analyst</h3>
+          <ul>
+            <li>Universitas Padjadjaran — Administrasi Bisnis, IPK 3.85/4.00</li>
+            <li>Investment Associate, Young Investor</li>
+            <li>SOP &amp; Business Process, PT Bersama Zatta Jaya Tbk.</li>
+            <li>2× Juara 1 Kompetisi Riset Ekuitas Nasional</li>
+            <li>Jatinangor / Bandung, Indonesia</li>
+          </ul>
+          <div class="wp-meta">DISUSUN OLEH: JQK · TERAKHIR DIPERBARUI: JAN 2026</div>
+        </div>
+        <div class="about-body">
+          <p>Saya mulai kuliah di Administrasi Bisnis Universitas Padjadjaran dengan fokus <strong>Bisnis dan Rantai Pasok</strong> — konsentrasi yang melatih saya membaca sebuah sistem dari hulu ke hilir, mulai dari alur barang sampai alur keputusan.</p>
+          <p>Ketertarikan saya pada keuangan tumbuh saat bergabung sebagai <strong>Investment Associate di Young Investor</strong>. Empat kompetisi riset ekuitas kemudian membawa saya meraih dua gelar Juara 1 nasional dan lolos ke babak semifinal internasional ICMSS, sekaligus meyakinkan saya bahwa analisis keuangan adalah bidang yang ingin saya tekuni.</p>
+          <p>Keyakinan itu saya uji lewat magang di <strong>PT Bersama Zatta Jaya Tbk.</strong>, menyusun SOP audit internal, melakukan stock opname atas persediaan senilai lebih dari IDR 100 juta, dan memperbarui belasan SOP lama. Dari situ saya belajar bahwa ketelitian bukan nilai tambah — ia fondasi dari setiap keputusan finansial yang bertanggung jawab.</p>
+          <p>Sekarang saya membawa ketiga pengalaman itu — sistem, riset, dan ketelitian — untuk melangkah ke peran <strong>Financial Analyst</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="track" id="perjalanan">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">WP 1.1 — PERJALANAN</span><h2>Jejak yang Terus Menanjak</h2></div>
+        <p class="desc">Setiap simpul terisi saat Anda menelusurinya.</p>
+      </div>
+      <div class="timeline" id="timeline">
+        <div class="rail"><div class="rail-fill" id="railFill"></div></div>
+
+        <div class="tl-item">
+          <div class="tl-node"></div>
+          <span class="tl-date">AGU 2021</span>
+          <h3>Memulai Perjalanan di Administrasi Bisnis</h3>
+          <p>Mengambil konsentrasi Bisnis dan Rantai Pasok di Universitas Padjadjaran — titik awal yang mempertemukan saya dengan cara sistem, strategi, dan angka saling terhubung.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node"></div>
+          <span class="tl-date">FEB — DES 2023</span>
+          <h3>General Manager of Public Relation, HIMA Administrasi Bisnis</h3>
+          <p>Memimpin 3 manajer dan 9 anggota hingga mencapai skor KPI 89%, meningkatkan reputasi organisasi sebesar 80%, dan menegosiasikan kemitraan dengan Joss Laundry yang menaikkan kas organisasi sebesar 10%.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node"></div>
+          <span class="tl-date">FEB — DES 2024</span>
+          <h3>Investment Associate, Young Investor</h3>
+          <p>Mengikuti 4+ kompetisi riset ekuitas, meraih 2 gelar Juara 1 nasional dan mencapai babak semifinal internasional. Melatih 10+ anggota dalam analisis ekuitas serta menyusun model dan valuasi keuangan untuk 3+ industri.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node"></div>
+          <span class="tl-date">FEB — JUN 2024</span>
+          <h3>SOP &amp; Business Process, PT Bersama Zatta Jaya Tbk.</h3>
+          <p>Menyusun 3 SOP audit internal dan legal dengan revisi di bawah 20%, melakukan stock opname atas persediaan senilai lebih dari IDR 100 juta dengan akurasi 90%, serta memperbarui sekitar 12 SOP lama.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node"></div>
+          <span class="tl-date">PERIODE AKADEMIK 2023/2024</span>
+          <h3>IPK Tertinggi: 3.83</h3>
+          <p>Sekaligus memimpin webinar "Start-Up 101" sebagai Project Officer, dengan lebih dari 200 peserta.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node"></div>
+          <span class="tl-date">2024</span>
+          <h3>Empat Kompetisi dalam Satu Tahun</h3>
+          <p>Sawala Gagasan Jatinangor, Airlangga Stock Competition, ICMSS 23rd, dan I-Vest Stock Competition — rangkaian kompetisi yang mengasah analisis saya.</p>
+          <span class="tl-tag">→ LIHAT DI PENCAPAIAN</span>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node"></div>
+          <span class="tl-date">2025</span>
+          <h3>Riset Terapan: RPJMD &amp; Studi Makroekonomi</h3>
+          <p>Menganalisis RPJMD Kabupaten Ciamis dan Bangka Barat, meneliti makroekonomi Kota Bandung, serta menyelesaikan mata kuliah Studi Kelayakan (Feasibility Study).</p>
+          <span class="tl-tag">→ LIHAT DI KARYA SAYA</span>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node"></div>
+          <span class="tl-date">AGU 2025</span>
+          <h3>Lulus sebagai Top Graduate</h3>
+          <p>Menutup masa studi sebagai Top Graduate Administrasi Bisnis Angkatan 2025/2026 dengan IPK akhir 3.85/4.00.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="achievements" id="pencapaian">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">WP 1.2 — PENCAPAIAN</span><h2>Pencapaian yang Tercatat</h2></div>
+        <p class="desc">Ringkas, tanpa perlu diklik untuk dibaca.</p>
+      </div>
+      <div class="ledger-grid" id="ledgerGrid"></div>
+    </div>
+  </section>
+
+  <section class="work" id="karya">
+    <div class="wrap on-dark">
+      <div class="section-head">
+        <div><span class="eyebrow">WP 2.0 — KARYA SAYA</span><h2>Dokumen &amp; Hasil Kerja</h2></div>
+        <p class="desc">Model keuangan, riset ekuitas, dan analisis kebijakan yang bisa langsung dilihat atau diunduh.</p>
+      </div>
+      <div class="work-grid" id="workGrid"></div>
+      <p class="work-note">Tautan di atas masih placeholder — ganti nilai <code>url</code> pada array <code>workFiles</code> di kode HTML dengan tautan file asli kamu (Google Drive / Dropbox), atau kirim filenya ke chat ini supaya bisa langsung disematkan.</p>
+    </div>
+  </section>
+
+  <section class="skills" id="keahlian">
+    <div class="wrap skills-grid">
+      <div class="skill-block">
+        <h3>Keahlian Teknis</h3>
+        <div class="hard-list" id="hardList"></div>
+      </div>
+      <div class="skill-block">
+        <h3>Keahlian Interpersonal</h3>
+        <div class="soft-tags" id="softTags"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontak">
+    <div class="wrap">
+      <span class="eyebrow">LANGKAH SELANJUTNYA</span>
+      <h2>Mari Membahas Peluang Magang Financial Analyst</h2>
+      <p class="lead">Saya sedang mencari kesempatan magang di bidang Financial Analyst tempat saya bisa terus mengasah riset, ketelitian, dan pemodelan keuangan. Terbuka untuk diskusi kapan saja.</p>
+      <div class="contact-links">
+        <a class="btn btn-solid" href="mailto:jumanulqalbykhutami@gmail.com">EMAIL SAYA</a>
+        <a class="btn btn-outline" href="tel:+6282120876349">+62 821-2087-6349</a>
+        <a class="btn btn-outline" href="https://linkedin.com/in/jumanulqalbykhutami" target="_blank" rel="noopener">LINKEDIN</a>
+      </div>
+      <div class="contact-meta">JATINANGOR / BANDUNG, INDONESIA</div>
+    </div>
+  </section>
+
+  <footer>© 2026 JUMANUL QALBY KHUTAMI</footer>
+
+<script>
+  // ---------- Ticker ----------
+  const tickerItems = [
+    "FINANCIAL ANALYST — FRESH GRADUATE",
+    "IPK 3.85 / 4.00",
+    "JUARA 1 — AIRLANGGA STOCK COMPETITION 2024",
+    "JUARA 1 — I-VEST STOCK COMPETITION 2024",
+    "SEMIFINALIS TOP 24 — ICMSS 23RD 2024",
+    "TOP GRADUATE ADMINISTRASI BISNIS 2025/2026",
+    "SIAP MAGANG — BANDUNG / REMOTE"
+  ];
+  const tickerTrack = document.getElementById('tickerTrack');
+  const tickerHTML = tickerItems.map(t => `<span>${t}</span>`).join('');
+  tickerTrack.innerHTML = tickerHTML + tickerHTML;
+
+  // ---------- Achievements (static, scannable) ----------
+  const achievements = [
+    { title:"Airlangga Stock Competition 2024", year:"2024",
+      detail:"Juara 1 kompetisi analisis dan strategi investasi saham tingkat nasional." },
+    { title:"I-Vest Stock Competition 2024", year:"2024",
+      detail:"Juara 1 kedua di tahun yang sama, di bidang riset dan valuasi saham." },
+    { title:"Semifinalis ICMSS 23rd — International Equity Research Conference", year:"2024",
+      detail:"Melaju ke babak semifinal (Top 24) konferensi riset ekuitas internasional." },
+    { title:"Sawala Gagasan Jatinangor City of Digital Knowledge", year:"2024",
+      detail:"Juara 1 kompetisi gagasan solusi berbasis pengetahuan digital untuk Kota Jatinangor." },
+    { title:"Top Graduate — Administrasi Bisnis UNPAD 2025/2026", year:"2025",
+      detail:"Lulus sebagai lulusan terbaik program studi, IPK akhir 3.85/4.00." },
+    { title:"IPK Tertinggi — Periode Akademik 2023/2024", year:"2024",
+      detail:"IPK 3.83, sambil menjabat Project Officer webinar 'Start-Up 101' (200+ peserta)." }
+  ];
+  document.getElementById('ledgerGrid').innerHTML = achievements.map(a => `
+    <div class="ledger-item">
+      <span class="ledger-check">✓</span>
+      <div class="ledger-body">
+        <h4>${a.title}</h4>
+        <span class="yr">${a.year}</span>
+        <p>${a.detail}</p>
+      </div>
+    </div>
+  `).join('');
+
+  // ---------- Karya Saya / Work files ----------
+  // GANTI "url" DI BAWAH INI dengan tautan file asli (Google Drive / Dropbox / GitHub),
+  // atau kirim file-nya ke chat supaya langsung disematkan.
+  const workFiles = [
+    { type:"xlsx", title:"Model Valuasi & Financial Modelling — Riset Ekuitas", tag:"Financial Model · Excel",
+      desc:"Model DCF dan komparasi valuasi yang disusun untuk kompetisi riset ekuitas di Young Investor.", url:"#" },
+    { type:"pdf", title:"Laporan Riset Ekuitas — Airlangga Stock Competition 2024", tag:"Equity Research · PDF",
+      desc:"Laporan analisis emiten dan rekomendasi investasi, meraih Juara 1 nasional.", url:"#" },
+    { type:"pdf", title:"Laporan Riset Ekuitas — I-Vest Stock Competition 2024", tag:"Equity Research · PDF",
+      desc:"Analisis fundamental dan valuasi saham untuk kompetisi tingkat nasional.", url:"#" },
+    { type:"docx", title:"Analisis &amp; Pelaporan RPJMD Kabupaten Ciamis", tag:"Kebijakan Publik · Word",
+      desc:"Telaah dokumen RPJMD, indikator makroekonomi, dan prioritas pembangunan daerah.", url:"#" },
+    { type:"docx", title:"Analisis &amp; Pelaporan RPJMD Kabupaten Bangka Barat", tag:"Kebijakan Publik · Word",
+      desc:"Evaluasi struktur belanja daerah dan keselarasan program pembangunan.", url:"#" },
+    { type:"pdf", title:"Studi &amp; Riset Makroekonomi Kota Bandung", tag:"Feasibility Study · PDF",
+      desc:"Riset indikator makroekonomi regional untuk mata kuliah Studi Kelayakan.", url:"#" }
+  ];
+  const badgeText = { xlsx:"XLS", pdf:"PDF", docx:"DOC" };
+  document.getElementById('workGrid').innerHTML = workFiles.map(f => `
+    <div class="work-card">
+      <div class="work-top">
+        <div class="file-badge ${f.type}">${badgeText[f.type]}</div>
+        <div>
+          <h4>${f.title}</h4>
+          <span class="work-tag">${f.tag}</span>
+        </div>
+      </div>
+      <p>${f.desc}</p>
+      <a class="work-open" href="${f.url}" target="_blank" rel="noopener">LIHAT FILE ↗</a>
+    </div>
+  `).join('');
+
+  // ---------- Skills ----------
+  const hardSkills = [
+    { name:"Financial Modelling & Valuation" },
+    { name:"Data Visualization" },
+    { name:"Microsoft Excel", level:"ADVANCED" },
+    { name:"Microsoft Word", level:"ADVANCED" },
+    { name:"Canva", level:"INTERMEDIATE" },
+    { name:"Eviews" },
+    { name:"SPSS" },
+    { name:"Trello" },
+    { name:"Notion" }
+  ];
+  document.getElementById('hardList').innerHTML = hardSkills.map(s => `
+    <div class="hard-row">
+      <span class="name">${s.name}</span>
+      ${s.level ? `<span class="level">${s.level}</span>` : ''}
+    </div>
+  `).join('');
+
+  const softSkills = ["Easy to Adapt","Project Management","Effective Communication & Collaboration","Detail Oriented","Work Under Pressure","Analytical & Problem-Solving","Time Management","Strategic Planning","Critical Thinking","Emotional Intelligence","Team Work"];
+  document.getElementById('softTags').innerHTML = softSkills.map(s => `<span>${s}</span>`).join('');
+
+  // ---------- Timeline scroll fill + reveal ----------
+  const timelineEl = document.getElementById('timeline');
+  const railFill = document.getElementById('railFill');
+  const tlItems = document.querySelectorAll('.tl-item');
+
+  function updateRail(){
+    const rect = timelineEl.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = Math.min(1, Math.max(0, (vh*0.75 - rect.top) / rect.height));
+    railFill.style.height = (progress*100) + '%';
+  }
+  window.addEventListener('scroll', updateRail, { passive:true });
+  window.addEventListener('resize', updateRail);
+  updateRail();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
+  }, { threshold:0.35 });
+  tlItems.forEach(item => io.observe(item));
+
+  // ---------- Active tab highlight (spreadsheet-tab nav) ----------
+  const tabs = document.querySelectorAll('.tab');
+  const sections = Array.from(tabs).map(t => document.getElementById(t.dataset.target)).filter(Boolean);
+  const tabIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const tab = document.querySelector(`.tab[data-target="${entry.target.id}"]`);
+      if (!tab) return;
+      if (entry.isIntersecting) {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      }
+    });
+  }, { threshold:0, rootMargin:"-45% 0px -50% 0px" });
+  sections.forEach(s => tabIO.observe(s));
+</script>
+</body>
+</html>
