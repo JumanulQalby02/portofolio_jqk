@@ -85,10 +85,6 @@
     position:sticky; top:0; z-index:50;
     background:var(--ink-2);
   }
-  .nav-top{
-    display:flex; align-items:center; justify-content:space-between;
-    max-width:1120px; margin:0 auto; padding:14px 32px 0;
-  }
   .brand{
     font-family:'Open Sans', sans-serif; font-weight:700; font-size:1rem;
     color:var(--cream-text); display:flex; align-items:center; gap:10px;
@@ -104,27 +100,28 @@
     border:1px solid var(--cream-text);
   }
   .nav-cta:hover{ background:transparent; color:var(--cream-text); }
-
-  .tabs{
-    max-width:1120px; margin:12px auto 0; padding:0 32px;
-    display:flex; gap:2px; overflow-x:auto; scrollbar-width:none;
-  }
-  .tabs::-webkit-scrollbar{ display:none; }
-  .tab{
-    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.03em;
-    white-space:nowrap; padding:10px 18px 9px;
-    background:rgba(237,234,217,0.06);
-    color:var(--cream-text-soft);
-    border-top-left-radius:4px; border-top-right-radius:4px;
-    border:1px solid rgba(237,234,217,0.08);
-    border-bottom:none;
-    transition:background .2s ease, color .2s ease;
-  }
-  .tab:hover{ color:var(--cream-text); }
-  .tab.active{
-    background:var(--paper); color:var(--ink);
-    border-color:var(--paper);
-  }
+  .nav-inner{
+  max-width:1120px; margin:0 auto; padding:14px 32px;
+  display:flex; align-items:center; justify-content:space-between; gap:32px;
+}
+.nav-links{
+  display:flex; align-items:center; gap:28px; overflow-x:auto; scrollbar-width:none;
+  flex:1; justify-content:center;
+}
+.nav-links::-webkit-scrollbar{ display:none; }
+.tab{
+  font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.02em;
+  white-space:nowrap; color:var(--cream-text-soft); padding:6px 2px; position:relative;
+  transition:color .2s ease;
+}
+.tab::after{
+  content:""; position:absolute; left:0; bottom:0; width:100%; height:2px;
+  background:var(--ledger-soft); transform:scaleX(0); transform-origin:left;
+  transition:transform .25s ease;
+}
+.tab:hover{ color:var(--cream-text); }
+.tab.active{ color:var(--cream-text); }
+.tab.active::after{ transform:scaleX(1); }
 
   /* ===== HERO ===== */
   .hero{
@@ -273,7 +270,7 @@
   @media (max-width: 860px){
     .wrap{ padding:0 20px; }
     .nav-top{ padding:14px 20px 0; }
-    .tabs{ padding:0 20px; }
+    .nav-inner{ padding:14px 20px; gap:16px; flex-wrap:wrap; }
     .hero-grid{ grid-template-columns:1fr; }
     .photo-wrap{ order:-1; }
     .photo-frame{ max-width:240px; }
@@ -301,19 +298,19 @@
   </div>
 
   <header class="nav">
-    <div class="nav-top">
+    <div class="nav-inner">
       <a href="#beranda" class="brand"><span class="mark">JQK</span> Jumanul Qalby Khutami</a>
+      <nav class="nav-links" id="tabs">
+        <a href="#beranda" class="tab" data-target="beranda">Beranda</a>
+        <a href="#tentang" class="tab" data-target="tentang">Tentang</a>
+        <a href="#perjalanan" class="tab" data-target="perjalanan">Perjalanan</a>
+        <a href="#pencapaian" class="tab" data-target="pencapaian">Pencapaian</a>
+        <a href="#karya" class="tab" data-target="karya">Karya</a>
+        <a href="#keahlian" class="tab" data-target="keahlian">Keahlian</a>
+        <a href="#kontak" class="tab" data-target="kontak">Kontak</a>
+      </nav>
       <a href="#kontak" class="nav-cta">HUBUNGI SAYA</a>
     </div>
-    <nav class="tabs" id="tabs">
-      <a href="#beranda" class="tab" data-target="beranda">Beranda</a>
-      <a href="#tentang" class="tab" data-target="tentang">Tentang</a>
-      <a href="#perjalanan" class="tab" data-target="perjalanan">Perjalanan</a>
-      <a href="#pencapaian" class="tab" data-target="pencapaian">Pencapaian</a>
-      <a href="#karya" class="tab" data-target="karya">Karya</a>
-      <a href="#keahlian" class="tab" data-target="keahlian">Keahlian</a>
-      <a href="#kontak" class="tab" data-target="kontak">Kontak</a>
-    </nav>
   </header>
 
   <section class="hero" id="beranda">
