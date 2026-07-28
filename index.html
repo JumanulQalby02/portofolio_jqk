@@ -9,20 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F5F7FA;
-    --paper-2:#E7ECF3;
-    --paper-line: rgba(13,28,54,0.12);
-    --ink:#0E1E38;
-    --ink-soft:#4E5E7A;
-    --ink-2:#0A1830;
-    --ink-3:#132A4C;
-    --ledger:#1E4E8C;
-    --ledger-soft:#5488CC;
-    --flag:#B07C2C;
-    --flag-soft:#C99A4C;
-    --docblue:#2E7D74;
-    --cream-text:#EAF0F8;
-    --cream-text-soft:#9FB2CC;
+    --paper:#F2EBDC;
+    --paper-2:#E7DCC2;
+    --paper-line: rgba(26,20,10,0.14);
+    --ink:#1B2438;
+    --ink-soft:#5C6378;
+    --ink-2:#0E1B33;
+    --ink-3:#182B4A;
+    --ledger:#4C7A5C;
+    --ledger-soft:#82AD8E;
+    --flag:#AD7A2A;
+    --flag-soft:#CDA058;
+    --docblue:#3E6E82;
+    --cream-text:#F5EEDF;
+    --cream-text-soft:#B7AC93;
   }
 
   *{box-sizing:border-box;}
@@ -160,34 +160,29 @@
   .cell .num{ font-family:'IBM Plex Mono', monospace; font-size:1.28rem; color:var(--cream-text); display:block; }
   .cell .lbl{ font-size:0.68rem; color:var(--cream-text-soft); margin-top:4px; display:block; }
 
-  /* photo, clipped-to-a-workpaper */
-  .photo-wrap{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+  /* photo — direct, no frame, with a floating credential card */
+  .photo-wrap{ display:flex; justify-content:center; }
   .photo-frame{
-    position:relative; width:230px; background:var(--paper);
-    padding:14px 14px 46px; box-shadow:0 20px 40px -16px rgba(0,0,0,0.5);
-    transform:rotate(-2deg);
+    position:relative; width:100%; max-width:360px;
   }
   .photo-frame img, .photo-frame .photo-placeholder{
     width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--ink-3);
+    border:2px solid var(--ink-3);
   }
   .photo-placeholder{
     display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces', serif; font-size:2.6rem; color:var(--ledger-soft);
+    font-family:'Open Sans', sans-serif; font-weight:700; font-size:2.6rem; color:var(--ledger-soft);
     border:1px dashed rgba(237,234,217,0.3);
   }
-  .photo-frame .cap{
-    position:absolute; bottom:14px; left:14px; right:14px;
-    font-family:'IBM Plex Mono', monospace; font-size:0.62rem; color:var(--ink-soft);
-    text-align:center; letter-spacing:0.02em;
-  }
-  .clip{ position:absolute; top:-13px; left:50%; transform:translateX(-50%); width:52px; height:22px; }
-  .clip .bar{ position:absolute; top:9px; left:2px; right:2px; height:6px; background:#8b9088; border-radius:2px; }
-  .clip .ear{ position:absolute; top:0; width:16px; height:16px; border:3px solid #8b9088; border-radius:50%; background:transparent; }
-  .clip .ear.l{ left:4px; } .clip .ear.r{ right:4px; }
   .photo-badge{
-    font-family:'IBM Plex Mono', monospace; font-size:0.65rem; letter-spacing:0.06em;
-    color:var(--ledger-soft); border:1px solid var(--ledger-soft); padding:4px 10px;
+    position:absolute; top:22px; right:-18px;
+    background:var(--paper); color:var(--ink);
+    padding:16px 20px; max-width:190px;
+    box-shadow:0 18px 34px -14px rgba(0,0,0,0.45);
   }
+  .photo-badge .pb-title{ font-weight:700; font-size:0.95rem; color:var(--ink); }
+  .photo-badge .pb-sub{ font-size:0.78rem; color:var(--ink-soft); margin-top:6px; display:block; }
+  .photo-badge .pb-year{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--flag); margin-top:6px; display:block; }
 
   /* ===== SECTION HEADS ===== */
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; flex-wrap:wrap; }
@@ -281,7 +276,8 @@
     .tabs{ padding:0 20px; }
     .hero-grid{ grid-template-columns:1fr; }
     .photo-wrap{ order:-1; }
-    .photo-frame{ width:190px; }
+    .photo-frame{ max-width:240px; }
+    .photo-badge{ right:-10px; padding:12px 14px; max-width:150px; }
     .cell-table{ grid-template-columns:repeat(2,1fr); }
     .cell:nth-child(2n){ border-right:none; }
     .about-grid{ grid-template-columns:1fr; }
@@ -324,7 +320,7 @@
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">FINANCIAL ANALYST — FRESH GRADUATE</span>
-        <h1>Jumanul Qalby Khutami</h1>
+        <h1>Jumanul Qalby <span style="color:var(--flag-soft)">Khutami</span></h1>
         <p class="hero-role">Riset Ekuitas · Financial Modelling · Analisis Kebijakan</p>
         <p class="hero-sub">Lulusan Administrasi Bisnis Universitas Padjadjaran (IPK 3.85/4.00) dengan pengalaman menyusun model valuasi, riset ekuitas kompetitif, dan SOP audit internal. Halaman ini merangkum apa yang sudah saya kerjakan — lengkap dengan dokumennya.</p>
         <div class="hero-cta">
@@ -340,8 +336,6 @@
       </div>
       <div class="photo-wrap">
         <div class="photo-frame">
-          <div class="clip"><span class="ear l"></span><span class="ear r"></span><span class="bar"></span></div>
-
           <!-- ================================================================
                GANTI FOTO DI SINI
                Ganti <div class="photo-placeholder">JQK</div> di bawah ini dengan:
@@ -350,9 +344,12 @@
                ================================================================ -->
           <img src="Jonas 2469.jpg" alt="Foto Jumanul Qalby Khutami">
 
-          <span class="cap">JUMANUL QALBY KHUTAMI · BANDUNG, ID</span>
+          <div class="photo-badge">
+            <span class="pb-title">Top Graduate</span>
+            <span class="pb-sub">Business Administration</span>
+            <span class="pb-year">2025/2026</span>
+          </div>
         </div>
-        <span class="photo-badge">TOP GRADUATE 2025/2026</span>
       </div>
     </div>
   </section>
